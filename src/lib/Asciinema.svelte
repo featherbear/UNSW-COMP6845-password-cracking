@@ -1,3 +1,15 @@
+<script context="module">
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight
+    return (
+      (rect.top * 1.05) <= viewHeight &&
+      rect.left >= 0 &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+</script>
+
 <script lang="ts">
   import { onMount } from "svelte";
 
@@ -9,26 +21,26 @@
   let defaults = {
     preload: true,
     poster: "npt:10:10",
-    autoPlay: true /*, loop: true */,
+    autoPlay: true,
   };
   let elem;
 
   onMount(() => {
-    // if (loopDelay > 0) {
-    //   console.info(`Custom loop delay set for ${path} of ${loopDelay}ms`)
-    //   // defaults.loop = false;
-    // }
+    let combinedOpts = { ...defaults, ...options };
+    let shouldPlayOnViewport = false;
+    if (combinedOpts.autoPlay) {
+      combinedOpts.autoPlay = false;
+      shouldPlayOnViewport = true;
+    }
 
     let player = window["AsciinemaPlayer"].create(
       "asciinema/recordings/" + path,
       elem,
-      {
-        ...defaults,
-        ...options,
-      }
+      combinedOpts
     );
 
     if (loopDelay) {
+      console.debug("Attaching end-listener for " + path);
       player.addEventListener("ended", () => {
         setTimeout(
           () =>
@@ -36,6 +48,23 @@
           loopDelay
         );
       });
+    }
+
+    if (shouldPlayOnViewport) {
+      console.debug("Attaching scroll-listener for " + path);
+      const onceFn = function () {
+        if (isInViewport(elem) && shouldPlayOnViewport) {
+          console.debug("Scroll event triggered for " + path);
+          document.removeEventListener("scroll", onceFn);
+          shouldPlayOnViewport = false;
+          player.play();
+        }
+      };
+
+      document.addEventListener("scroll", onceFn, {
+        passive: true,
+      });
+      onceFn();
     }
   });
 </script>
