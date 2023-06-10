@@ -23,6 +23,10 @@ Let's run `simplerule.rule` and review the results
 
 > $> `hashcat password.txt -r simplerule.rule --stdout`
 
+* `password.txt` - Wordlist
+* `-r simplerule.rule` - Use rule list
+* `--stdout` - Show password candidates instead of cracking
+
 <Asciinema path="simplerule_test.cast" options={{rows: 15, autoPlay: false}} loopDelay={0} />
 
 Based on the rule `$1$2$2` (append `123` at the end of a password), we see a generated password `password123`.
@@ -42,6 +46,11 @@ Let's create a new rule list `labrule.rule`, with the rules
 Now let's try out our new rule list `labrule.rule` against `rockyou.txt` to crack `simplerule_password.txt`
 
 > $> `hashcat -m 1000 simplerule_password.txt /usr/share/wordlists/rockyou.txt -r labrule.rule`
+
+* `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
+* `simplerule_password.txt` - The hash file to crack
+* `/usr/share/wordlists/rockyou.txt` - Wordlist
+* `-r labrule.rule` - Use rule list
 
 <Asciinema path="simplerule_crack.cast" />
 
