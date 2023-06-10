@@ -1,0 +1,46 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+
+</script>
+
+## Combination Attacks
+
+For the next attack we are going to try a combination attack using a wordlist and our custom-built wordlist. 
+
+In this scenario let's say we know the password is an English word and the last 4 characters of a password are a digit. 
+
+First, we will create a wordlist which has every possible number combination for 4 digits. 
+
+We will use `crunch` to do this (already installed in Kali Linux).
+
+
+```
+crunch version 3.6
+
+Crunch can create a wordlist based on criteria you specify.  The output from crunch can be sent to the screen, file, or to another program.
+
+Usage: crunch <min> <max> [options]
+where min and max are numbers
+
+Please refer to the man page for instructions and examples on how to use crunch.
+```
+
+> `crunch 4 4 0123456789 -o 4_numbers.txt`
+
+<Asciinema path="crunch.cast" options={{rows: 15}} />
+
+Once we have created our extra wordlist (`4_numbers.txt`) we can run the attack with the `rockyou.txt` wordlist. 
+
+We will change use attack mode `-a 1` (combination attack).
+
+> `hashcat -a 1 -m 1000 ntlm_rockyou2801.txt /usr/share/wordlists/rockyou.txt 4_numbers.txt`
+
+* `-a 3` - Use [attack mode](https://hashcat.net/wiki/doku.php?id=hybrid_attack) 1 (combination attack)
+* `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
+* ` ntlm_rockyou2801.txt` - The hash file to crack
+* `/usr/share/wordlists/rockyou.txt` - The first part of the combination
+* `4_numbers.txt` - The second part of the combination
+
+<Asciinema path="ntlm_rockyou2801.cast" />
+
+We can now see the password is `rockyou2801`

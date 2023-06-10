@@ -1,0 +1,47 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+  import RulesTable from "./rules-table.md"
+</script>
+
+## Rules
+
+Rules are a set of predefined rules which can perform mutations on a wordlist (e.g character to number substitutions, letter (de)capitalisation, character replacements). Each line is its own rule and will apply the rule to the password(s) supplied in a wordlist.
+
+To understand the rules, we can review the [Hashcat documentation](https://hashcat.net/wiki/doku.php?id=rule_based_attack).
+
+<RulesTable />
+
+---
+
+We will use a sample wordlist `password.txt` which is text file containing the password `password`.
+
+Consider the rule in `simplerule.rule`, we have some append rules, some capitalisation rules, and a substitution from `s` to `$`
+
+<Asciinema path="simplerule_head.cast" options={{rows: 15, autoPlay: false}} loopDelay={0}/>
+
+Let's run `simplerule.rule` and review the results
+
+> `hashcat password.txt -r simplerule.rule --stdout`
+
+<Asciinema path="simplerule_test.cast" options={{rows: 15, autoPlay: false}} loopDelay={0} />
+
+Based on the rule `$1$2$2` (append `123` at the end of a password), we see a generated password `password123`.
+
+---
+
+Let's create a new rule list `labrule.rule`, with the rules
+
+* Capitalise the first letter
+* Replace `s` with `$`
+* Add `!` to the end of the password
+
+> Solution: `c:ss$:$!`
+
+---
+
+Now let's try out our new rule list `labrule.rule` against `rockyou.txt` to crack `simplerule_password.txt`
+
+<Asciinema path="simplerule_crack.cast" />
+
+We can now see the password is `Friend$!`
+

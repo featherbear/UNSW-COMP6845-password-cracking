@@ -1,0 +1,36 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+
+</script>
+In order to password crack a ZIP file or a Word document we need to first extract the password hash to be provided to Hashcat.
+
+We will now learn how to extract a password from a password-protected Word document file.
+
+The Python script `office2john.py` is supplied in this tutorial, but is also already available in Kali Linux.
+
+> `office2john CTF_Forensic.docx > CTF_Forensic.docx.hash`
+
+<Asciinema path="office2john_demo.cast" />
+
+If we review the hash, we can see the hash begins after the filename: `$office$*2013*...`
+
+Looking at the [Hashcat documentation](https://hashcat.net/wiki/doku.php?id=example_hashes) for hash modes, we can see that we need to use `-m 9600` (MS Office 2013)
+
+|Hash-Mode|Hash-Name|Example|
+|:---:|:---:|:---|
+|9500|...|...|
+|9600|MS Office 2013|`$office$*2013*100000*256*16*7dd611d...`|
+|9700|...|...|
+
+---
+
+If you wondered what "john" means in `office2john`, this is referring to another hash-cracking tool called [John the Ripper](https://github.com/openwall/john).  
+Whilst both Hashcat and John the Ripper use the same hashes, the input format to provided to each tool is different. In order to crack the MS Office 2013 hash generated from the `office2john` tool in Hashcat, **we must first remove the filename from the hash file**.
+
+<Asciinema path="office2john_prepare.cast" />
+
+Now we can crack the hash
+
+> `hashcat -m 9600 CTF_Forensic.docx.hash /usr/share/wordlists/rockyou.txt`
+
+<Asciinema path="office2john_crack.cast" />

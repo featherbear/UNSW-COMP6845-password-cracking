@@ -1,0 +1,63 @@
+<script>
+  import Asciinema from "../lib/Asciinema.svelte";
+
+</script>
+## Wordlist Attack
+
+> For this first exercise we will use a wordlist attack to crack an NTLM hash using Hashcat.
+
+$> `hashcat -m 1000 ntlm.txt /usr/share/wordlists/rockyou.txt`
+
+* `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
+* `ntlm.txt` - The hash file to crack
+* `/usr/share/wordlists/rockyou.txt` - The word-list to crack
+
+
+<Asciinema path="ntlm.cast"/>
+
+
+Once complete we can see that for the hash in `ntlm.txt`, the password is `password`
+
+## Hybrid Attack: Introduction
+
+Now let's use a [hybrid attack](https://hashcat.net/wiki/doku.php?id=hybrid_attack) where we will use the `rockyou.txt` wordlist alongside a _mask_ to append 4 digits after each password.
+
+If we look at [Hashcat documentation](https://hashcat.net/wiki/doku.php?id=mask_attack) you will see we use `?d` to add a number to the end of each word.
+
+```
+?l = abcdefghijklmnopqrstuvwxyz
+?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+?d = 0123456789
+?h = 0123456789abcdef
+?H = 0123456789ABCDEF
+?s = «space»!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+?a = ?l?u?d?s
+?b = 0x00 - 0xff
+
+```
+
+## Hybrid Wordlist + Brute-force Attack
+
+Copy the provided `ntlm_password1111.txt` hash file to your machine.
+
+Run the following in Hashcat
+
+$> `hashcat -a 6 -m 1000 ntlm_password1111.txt /usr/share/wordlists/rockyou.txt ?d?d?d?d`
+
+* `-a 6` - Use [attack mode](https://hashcat.net/wiki/doku.php?id=hybrid_attack) 6 (hybrid attack)
+* `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
+* `ntlm_password1111.txt` - The hash file to crack
+* `/usr/share/wordlists/rockyou.txt` - The word-list to crack
+* `?d?d?d?d` - The character set to append
+
+<Asciinema path="ntlm_password1111.cast" />
+
+We can now see the password is `password1111`
+
+## Hybrid Mask + Wordlist Attack
+
+Let's say we want to crack for a password like `1111password`. We can instead use attack mode `7` - a hybrid mask + wordlist attack.
+
+e.g. for an NTLM password (`-m 1000`), we will perform a hybrid mask + wordlist attack (`-a 7`) with a mask of `?d?d?d?d` and the `rockyou.txt` dictionary
+
+> `hashcat -a 7 -m 1000 <your_NTLM_hash_file> ?d?d?d?d /usr/share/wordlists/rockyou.txt`

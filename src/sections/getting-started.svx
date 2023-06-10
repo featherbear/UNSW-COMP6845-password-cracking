@@ -1,0 +1,33 @@
+<script>
+
+  import Asciinema from "../lib/Asciinema.svelte";
+
+</script>
+
+## Getting Started
+
+The resources required for this activity is available for download: [HERE](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+This activity assumes you are running Kali Linux, which already contains the required tools and wordlists to complete the activities.  
+If you are not using Kali Linux, ensure you have [Hashcat](https://github.com/hashcat/hashcat) and [Crunch](https://sourceforge.net/projects/crunch-wordlist/) installed, as well as a copy of the [`rockyou.txt`](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt) wordlist.
+
+
+## Start
+
+One of the first things we will do is to run `hashcat --help` to review the help page as required.  
+We will be working our way through the different attack modes of Hashcat.
+
+<!-- We will start with a simple exercise of using Hashcat to perform a dictionary attack to break a Microsoft Word file and a zip-file password.  -->
+
+### Kali Linux - Prepare the rockyou.txt wordlist
+
+An archived copy of `rockyou.txt` is available on Kali Linux, we must first extract it.
+
+```sh
+cd /usr/share/wordlists
+ls # Note that there is a rockyou.txt.gz file
+sudo gunzip rockyou.txt.gz
+ls # You should now see a rockyou.txt
+```
+
+<Asciinema path="start.cast" options={{rows: 10}} fixed={true} />

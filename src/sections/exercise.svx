@@ -1,0 +1,35 @@
+## Exercises
+
+### Exercise 1
+
+Write a rule list that will
+
+* Capitalise the first letter
+* Append `1234` to the end
+* Replace the letter `s` with `$`
+* Replace the letter `o` with `0`
+
+If the rules are written correctly, the rules applied on `password` should produce `Pa$$w0rd1234`
+
+### Exercise 2
+
+> Crack this NTLM hash `B05564D517681DAB0FB8FA64CA97E7CB`. 
+
+The password is made up (in order) of 1 capital letter, 2 lowercase letters, and 4 numbers.
+
+### Exercise 3
+
+> Crack this NTLM hash `4A537119CEB6F51224DAD23D01CAA45C`
+
+Hint: Have you been watching your lectures?
+
+### Exercise 4 (Optional)
+
+> How secure is your own password? **We don't want your password, don't submit this**
+
+Try and crack you own password using wordlist and/or rules, convert to any hash you want using https://codebeautify.org/ntlm-hash-generator 
+
+Perhaps try the pre-made rule list [`rockyou-3000.rule`](https://raw.githubusercontent.com/hashcat/hashcat/master/rules/rockyou-30000.rule)
+
+
+

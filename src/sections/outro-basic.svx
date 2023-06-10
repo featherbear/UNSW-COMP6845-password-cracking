@@ -1,0 +1,8 @@
+---
+
+> #### 🔥 This completes the section on password cracking 🔥
+
+While we have spent the entire time focusing on cracking NTLM hashes, this type of hash would generally not be common during a forensic investigation.
+
+What is more common is breaking into password-protected ZIP files or Word documents, however the same principles apply.  
+We just need to change the `-m` flag to the correct hash format that we are trying to crack. 

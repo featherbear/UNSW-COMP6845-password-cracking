@@ -23,18 +23,67 @@ a:hover {
   color: #535bf2;
 }
 
+:root {
+  --leftLineWidth: 5px;
+  --leftLineColour: grey;
+}
+
+code {
+  user-select: all;
+  cursor: text;
+  border: 1px solid grey;
+  padding: 3px;
+  border-radius: 0.2em;
+}
+
+a > code {
+  cursor: pointer;
+}
+
+pre > code {
+  border-left: var(--leftLineWidth) solid var(--leftLineColour);
+  display: block;
+  user-select: auto;
+}
+
+blockquote {
+  margin: 0;
+  padding: 0 10px;
+
+  border-left: var(--leftLineWidth) solid var(--leftLineColour);
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  cursor: default;
+}
+
+ul {
+  padding-left: 1em;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+h2, h3 {
+  padding-top: 1em;
+  text-decoration: underline;
+}
+
+h2:not(:first-of-type) {
+  border-top: 1px solid var(--leftLineColour);
+}
+
+/* h2 {
+  position: sticky;
+  top: 0;
+} */
 
 .card {
   padding: 2em;
@@ -44,7 +93,7 @@ h1 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 button {

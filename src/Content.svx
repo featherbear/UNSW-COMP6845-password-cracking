@@ -1,0 +1,36 @@
+<script>
+    import GettingStarted from "./sections/getting-started.svx";
+    import WordlistAttack from "./sections/wordlist-attack.svx";
+    import BruteforceAttack from "./sections/bruteforce-attack.svx";
+    import CombinationAttack from "./sections/combination-attack.svx";
+    import Rules from "./sections/rules.svx";
+    import OutroBasic from "./sections/outro-basic.svx";
+    import OfficeCracking from "./sections/office-cracking.svx";
+  import Exercise from "./sections/exercise.svx";
+</script>
+
+# COMP6845 | Password Cracking
+
+```
+Version: 1.0 (20230611)
+Maintainer: Andrew Wong (andrew.j.wong@unsw.edu.au)
+```
+
+```
+Special thanks to Wesley Lacy for creating the activity resources
+```
+
+In this lab, we will use a combination of scripts to extract password hashes from files and various attacks to crack the password.
+
+---
+
+<GettingStarted />
+<WordlistAttack />
+<BruteforceAttack />
+<CombinationAttack />
+<Rules />
+<OutroBasic />
+
+<OfficeCracking/>
+
+<Exercise />
