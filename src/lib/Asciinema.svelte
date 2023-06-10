@@ -1,9 +1,10 @@
 <script context="module">
   function isInViewport(el) {
     const rect = el.getBoundingClientRect();
-    const viewHeight = window.innerHeight || document.documentElement.clientHeight
+    const viewHeight =
+      window.innerHeight || document.documentElement.clientHeight;
     return (
-      (rect.top * 1.05) <= viewHeight &&
+      rect.top * 1.05 <= viewHeight &&
       rect.left >= 0 &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
@@ -39,33 +40,35 @@
       combinedOpts
     );
 
-    if (loopDelay) {
-      console.debug("Attaching end-listener for " + path);
-      player.addEventListener("ended", () => {
-        setTimeout(
-          () =>
-            player.getCurrentTime() == player.getDuration() && player.play(),
-          loopDelay
-        );
-      });
-    }
+    setTimeout(() => {
+      if (loopDelay) {
+        console.debug("Attaching end-listener for " + path);
+        player.addEventListener("ended", () => {
+          setTimeout(
+            () =>
+              player.getCurrentTime() == player.getDuration() && player.play(),
+            loopDelay
+          );
+        });
+      }
 
-    if (shouldPlayOnViewport) {
-      console.debug("Attaching scroll-listener for " + path);
-      const onceFn = function () {
-        if (isInViewport(elem) && shouldPlayOnViewport) {
-          console.debug("Scroll event triggered for " + path);
-          document.removeEventListener("scroll", onceFn);
-          shouldPlayOnViewport = false;
-          player.play();
-        }
-      };
+      if (shouldPlayOnViewport) {
+        console.debug("Attaching scroll-listener for " + path);
+        const onceFn = function () {
+          if (isInViewport(elem) && shouldPlayOnViewport) {
+            console.debug("Scroll event triggered for " + path);
+            document.removeEventListener("scroll", onceFn);
+            shouldPlayOnViewport = false;
+            player.play();
+          }
+        };
 
-      document.addEventListener("scroll", onceFn, {
-        passive: true,
-      });
-      onceFn();
-    }
+        document.addEventListener("scroll", onceFn, {
+          passive: true,
+        });
+        onceFn();
+      }
+    }, 0);
   });
 </script>
 
