@@ -23,7 +23,7 @@ We tell Hashcat a password mask to follow when generating inputs. Providing `?a`
 
 We can now see the password is `pass`
 
-## Brute-force with unknown length
+### Brute-force with unknown length
 
 In the previous example (where the password was 4 characters long), if a mask of 8 characters was provided, then Hashcrack wouldn't (read: will never) successfully crack the password, as the mask provides an explicit length.
 

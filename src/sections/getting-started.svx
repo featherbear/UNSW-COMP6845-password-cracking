@@ -11,8 +11,7 @@ The resources required for this activity is [available for download here](https:
 This activity assumes you are running Kali Linux, which already contains the required tools and wordlists to complete the activities.  
 If you are not using Kali Linux, ensure you have [Hashcat](https://github.com/hashcat/hashcat) and [Crunch](https://sourceforge.net/projects/crunch-wordlist/) installed, as well as a copy of the [`rockyou.txt`](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt) wordlist.
 
-
-## Start
+### Hashcat
 
 One of the first things we will do is to run `hashcat --help` to review the help page as required.  
 We will be working our way through the different attack modes of Hashcat.

@@ -2,6 +2,9 @@
   import Asciinema from "../lib/Asciinema.svelte";
 
 </script>
+
+## Cracking other hashes
+
 In order to password crack a ZIP file or a Word document we need to first extract the password hash to be provided to Hashcat.
 
 We will now learn how to extract a password from a password-protected Word document file.
