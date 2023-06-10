@@ -12,7 +12,7 @@ What if the previous methods didn't successfully crack the password? We can brut
 
 We tell Hashcat a password mask to follow when generating inputs. Providing `?a` (refer to the [character sets](https://hashcat.net/wiki/doku.php?id=mask_attack)), we provide a combination of lowercase, uppercase, number and special characters from the ASCII character set. `?a?a` would be a 2-character ASCII password, `?a?a?a?a` would be a 4-character ASCII password and so on.
 
-> `hashcat -m 1000 ntlm_bruteforce.txt -a 3 ?a?a?a?a`
+> $> `hashcat -m 1000 ntlm_bruteforce.txt -a 3 ?a?a?a?a`
 
 * `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
 * `ntlm_bruteforce.txt` - The hash file to crack
@@ -29,13 +29,13 @@ In the previous example (where the password was 4 characters long), if a mask of
 
 Now in the scenario where you don't know the exact length but know that it is at most 5 characters long. To get around this we add the `--increment` flag which tells Hashcat to start at one character, then keep adding more until we've reached our final mask.
 
-> `hashcat -m 1000 ntlm_bruteforce_2.txt -a 3 ?a?a?a?a?a --increment`
+> $> `hashcat -m 1000 ntlm_bruteforce_2.txt -a 3 ?a?a?a?a?a --increment`
 
 * How many passwords does this mask generate? How do you calculate it?
 
 We can go a step further and tell Hashcat a minimum password length using `--increment-min=N`, which tells Hashcat to start at `N`-character passwords. For our test we will add `--increment-min=2`  which tell Hashcat to start with 2-character passwords.
 
-> `hashcat -m 1000 ntlm_bruteforce_2.txt -a 3 ?a?a?a?a?a --increment --increment-min=2`
+> $> `hashcat -m 1000 ntlm_bruteforce_2.txt -a 3 ?a?a?a?a?a --increment --increment-min=2`
 
 <Asciinema path="ntlm_bruteforce_2.cast" />
 

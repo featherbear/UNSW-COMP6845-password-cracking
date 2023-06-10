@@ -8,7 +8,7 @@ We will now learn how to extract a password from a password-protected Word docum
 
 The Python script `office2john.py` is supplied in this tutorial, but is also already available in Kali Linux.
 
-> `office2john CTF_Forensic.docx > CTF_Forensic.docx.hash`
+> $> `office2john CTF_Forensic.docx > CTF_Forensic.docx.hash`
 
 <Asciinema path="office2john_demo.cast" />
 
@@ -31,6 +31,6 @@ Whilst both Hashcat and John the Ripper use the same hashes, the input format to
 
 Now we can crack the hash
 
-> `hashcat -m 9600 CTF_Forensic.docx.hash /usr/share/wordlists/rockyou.txt`
+> $> `hashcat -m 9600 CTF_Forensic.docx.hash /usr/share/wordlists/rockyou.txt`
 
 <Asciinema path="office2john_crack.cast" />

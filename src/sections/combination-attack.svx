@@ -25,7 +25,7 @@ where min and max are numbers
 Please refer to the man page for instructions and examples on how to use crunch.
 ```
 
-> `crunch 4 4 0123456789 -o 4_numbers.txt`
+> $> `crunch 4 4 0123456789 -o 4_numbers.txt`
 
 <Asciinema path="crunch.cast" options={{rows: 15}} />
 
@@ -33,7 +33,7 @@ Once we have created our extra wordlist (`4_numbers.txt`) we can run the attack 
 
 We will change use attack mode `-a 1` (combination attack).
 
-> `hashcat -a 1 -m 1000 ntlm_rockyou2801.txt /usr/share/wordlists/rockyou.txt 4_numbers.txt`
+> $> `hashcat -a 1 -m 1000 ntlm_rockyou2801.txt /usr/share/wordlists/rockyou.txt 4_numbers.txt`
 
 * `-a 3` - Use [attack mode](https://hashcat.net/wiki/doku.php?id=hybrid_attack) 1 (combination attack)
 * `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)

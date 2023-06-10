@@ -1,16 +1,16 @@
 <script>
   import Asciinema from "../lib/Asciinema.svelte";
-
 </script>
+
 ## Wordlist Attack
 
-> For this first exercise we will use a wordlist attack to crack an NTLM hash using Hashcat.
+For this first exercise we will use a wordlist attack to crack an NTLM hash using Hashcat.
 
-$> `hashcat -m 1000 ntlm.txt /usr/share/wordlists/rockyou.txt`
+> $> `hashcat -m 1000 ntlm.txt /usr/share/wordlists/rockyou.txt`
 
 * `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
 * `ntlm.txt` - The hash file to crack
-* `/usr/share/wordlists/rockyou.txt` - The word-list to crack
+* `/usr/share/wordlists/rockyou.txt` - The wordlist to use
 
 
 <Asciinema path="ntlm.cast"/>
@@ -38,17 +38,15 @@ If we look at [Hashcat documentation](https://hashcat.net/wiki/doku.php?id=mask_
 
 ## Hybrid Wordlist + Brute-force Attack
 
-Copy the provided `ntlm_password1111.txt` hash file to your machine.
-
 Run the following in Hashcat
 
-$> `hashcat -a 6 -m 1000 ntlm_password1111.txt /usr/share/wordlists/rockyou.txt ?d?d?d?d`
+> $> `hashcat -a 6 -m 1000 ntlm_password1111.txt /usr/share/wordlists/rockyou.txt ?d?d?d?d`
 
 * `-a 6` - Use [attack mode](https://hashcat.net/wiki/doku.php?id=hybrid_attack) 6 (hybrid attack)
 * `-m 1000` - Use [hash mode](https://hashcat.net/wiki/doku.php?id=example_hashes) 1000 (NTLM)
 * `ntlm_password1111.txt` - The hash file to crack
-* `/usr/share/wordlists/rockyou.txt` - The word-list to crack
-* `?d?d?d?d` - The character set to append
+* `/usr/share/wordlists/rockyou.txt` - The wordlist to use
+* `?d?d?d?d` - The character mask to append
 
 <Asciinema path="ntlm_password1111.cast" />
 
