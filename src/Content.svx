@@ -6,7 +6,7 @@
     import Rules from "./sections/rules.svx";
     import OutroBasic from "./sections/outro-basic.svx";
     import OfficeCracking from "./sections/office-cracking.svx";
-  import Exercise from "./sections/exercise.svx";
+    import Exercise from "./sections/exercise.svx";
 </script>
 
 # COMP6845 | Password Cracking
