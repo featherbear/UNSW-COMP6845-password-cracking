@@ -16,4 +16,4 @@ For this first exercise we will use a wordlist attack to crack an NTLM hash usin
 <Asciinema path="ntlm.cast"/>
 
 
-Once complete we can see that for the hash in `ntlm.txt`, the password is `password`
+Once complete we can see that for the hash in `ntlm.txt`, the password is `password1`
