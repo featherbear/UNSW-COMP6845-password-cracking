@@ -45,4 +45,4 @@ Let's say we want to crack for a password like `1111password`. We can instead us
 
 e.g. for an NTLM password (`-m 1000`), we will perform a hybrid mask + wordlist attack (`-a 7`) with a mask of `?d?d?d?d` and the `rockyou.txt` dictionary
 
-> `hashcat -a 7 -m 1000 <your_NTLM_hash_file> ?d?d?d?d /usr/share/wordlists/rockyou.txt`
+> $> `hashcat -a 7 -m 1000 <your_NTLM_hash_file> ?d?d?d?d /usr/share/wordlists/rockyou.txt`
