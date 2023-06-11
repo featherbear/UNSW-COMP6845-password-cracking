@@ -1,6 +1,6 @@
----
+## Remark
 
-> #### 🔥 This completes the main section on password cracking 🔥
+> 🔥 This completes the main section on password cracking 🔥
 
 While we have spent the entire time focusing on cracking NTLM hashes, this type of hash would generally not be common during a forensic investigation.
 

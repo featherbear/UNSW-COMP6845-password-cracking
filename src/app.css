@@ -5,7 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --background: #242424;
+  background-color: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,7 +57,7 @@ blockquote {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   cursor: default;
@@ -97,6 +98,7 @@ h2:not(:first-of-type) {
 
 #app {
   max-width: 1280px;
+  width: 90vw;
   margin: 0 auto;
   padding: 2rem;
   /* text-align: center; */

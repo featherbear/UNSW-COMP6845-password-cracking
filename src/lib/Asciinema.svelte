@@ -40,6 +40,16 @@
       combinedOpts
     );
 
+    const onceFn = function () {
+      if (!elem) return
+      if (isInViewport(elem) && shouldPlayOnViewport) {
+        console.debug("Scroll event triggered for " + path);
+        document.removeEventListener("scroll", onceFn);
+        shouldPlayOnViewport = false;
+        player.play();
+      }
+    };
+
     setTimeout(() => {
       if (loopDelay) {
         console.debug("Attaching end-listener for " + path);
@@ -54,20 +64,16 @@
 
       if (shouldPlayOnViewport) {
         console.debug("Attaching scroll-listener for " + path);
-        const onceFn = function () {
-          if (isInViewport(elem) && shouldPlayOnViewport) {
-            console.debug("Scroll event triggered for " + path);
-            document.removeEventListener("scroll", onceFn);
-            shouldPlayOnViewport = false;
-            player.play();
-          }
-        };
-
         document.addEventListener("scroll", onceFn, {
           passive: true,
         });
         onceFn();
       }
+
+      return () => {
+        document.removeEventListener("scroll", onceFn);
+        player.dispose();
+      };
     }, 0);
   });
 </script>
