@@ -13,7 +13,7 @@ To understand the rules, we can review the [Hashcat documentation](https://hashc
 
 ---
 
-We will use a sample wordlist `password.txt` which is text file containing the password `password`.
+We will use a sample wordlist `password.txt` which is a text file with one single line, `password`.
 
 Consider the rule in `simplerule.rule`, we have some append rules, some capitalisation rules, and a substitution from `s` to `$`
 
