@@ -45,6 +45,7 @@
   $: if (componentRef && containerElem) {
     containerElem.querySelectorAll("blockquote").forEach((elem) => {
       if (elem.textContent.startsWith("$> ")) {
+        elem.style.userSelect = "none";
         elem.style.setProperty("--leftLineColour", "#21b0d7");
       }
     });
