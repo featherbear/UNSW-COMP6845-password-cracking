@@ -6,7 +6,7 @@ Maintainer: Andrew Wong (andrew.j.wong@unsw.edu.au)
 ```
 
 ```
-Special thanks to Wesley Lacy for creating the activity resources
+Special thanks to Wesley Lacy for providing the lesson plan and resources
 ```
 
 In this lab, we will use a combination of scripts to extract password hashes from files and various attacks to crack the password.
